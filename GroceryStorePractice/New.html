@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Catalog</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Rice Product Catalog</h2>
+<table id="productTable">
+  <thead>
+    <tr>
+      <th>Brand Name</th>
+      <th>Product Name</th>
+      <th>Available Quantities (kg)</th>
+      <th>Purchasing Prices (₹)</th>
+      <th>Selling Prices (₹)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Data will be inserted here dynamically -->
+  </tbody>
+</table>
+
+<script>
+'use strict';
+
+// Your full ProductCatalog object here (for demo, only Rice included)
+const ProductCatalog = {
+  Rice: {
+    LalBaba: {
+      Name: "Lal baba mini cut rice",
+      QuantityInKg: [1, 2, 3, 4, 5, 10, 25, 100],
+      PurchasingPrice: [25, 50, 75, 100, 125, 250, 625, 2500],
+      SellingPrice: [30, 60, 90, 120, 150, 300, 750, 3000]
+    },
+    Himalaya: {
+      Name: "Himalaya Mini Cut Rice",
+      QuantityInKg: [1, 2, 3, 4, 5, 10, 25, 100],
+      PurchasingPrice: [30, 60, 90, 120, 150, 300, 750, 3000],
+      SellingPrice: [40, 80, 120, 160, 200, 400, 1000, 4000]
+    },
+    RadhaBhog: {
+      Name: "RadhaBhog Govind Bhog Rice",
+      QuantityInKg: [1, 2, 3, 4, 5, 10, 25, 100],
+      PurchasingPrice: [40, 80, 120, 160, 200, 400, 1000, 4000],
+      SellingPrice: [50, 100, 150, 200, 250, 500, 1250, 5000]
+    },
+    IndiaGate: {
+      Name: "India Gate Basmati Rice",
+      QuantityInKg: [1, 2, 3, 4, 5, 10, 25, 100],
+      PurchasingPrice: [80, 160, 240, 320, 400, 800, 2000, 8000],
+      SellingPrice: [100, 200, 300, 400, 500, 1000, 2500, 10000]
+    },
+    Dawat: {
+      Name: "Dawat Basmati Rice",
+      QuantityInKg: [1, 2, 3, 4, 5, 10, 25, 100],
+      PurchasingPrice: [120, 240, 360, 480, 600, 1200, 3000, 12000],
+      SellingPrice: [150, 300, 450, 600, 750, 1500, 3600, 15000]
+    }
+  }
+};
+
+// Function to load data into HTML table
+function loadRiceData() {
+  const riceData = ProductCatalog.Rice;
+  const tableBody = document.querySelector("#productTable tbody");
+
+  for (const brand in riceData) {
+    const product = riceData[brand];
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${brand}</td>
+      <td>${product.Name}</td>
+      <td>${product.QuantityInKg.join(", ")}</td>
+      <td>${product.PurchasingPrice.join(", ")}</td>
+      <td>${product.SellingPrice.join(", ")}</td>
+    `;
+    tableBody.appendChild(row);
+  }
+}
+
+loadRiceData();
+</script>
+
+</body>
+</html>

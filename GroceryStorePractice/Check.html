@@ -1,0 +1,43 @@
+<table border="1">
+  <thead>
+    <tr>
+      <th>Product Name</th>
+      <th>Quantity</th>
+      <th>Purchasing Price</th>
+      <th>Selling Price</th>
+    </tr>
+  </thead>
+  <tbody id="productTableBody"></tbody>
+</table>
+
+<script>
+  const product = {
+    Name: "Himalaya Mini Cut Rice",
+    QuantityInKg: [1, 2, 3, 4, 5, 10, 25, 100],
+    PurchasingPrice: [30, 60, 90, 120, 150, 300, 750, 3000],
+    SellingPrice: [40, 80, 120, 160, 200, 400, 1000, 4000]
+  };
+
+  const tbody = document.getElementById("productTableBody");
+
+  const row = document.createElement("tr");
+
+  row.innerHTML = `
+    <td>${product.Name}</td>
+    <td>
+      <select id="quantitySelect">
+        ${product.QuantityInKg.map((qty, index) => `<option value="${index}">${qty} Kg</option>`).join("")}
+      </select>
+    </td>
+    <td id="purchasingPrice">${product.PurchasingPrice[0]}</td>
+    <td id="sellingPrice">${product.SellingPrice[0]}</td>
+  `;
+
+  tbody.appendChild(row);
+
+  document.getElementById("quantitySelect").addEventListener("change", function() {
+    const index = this.value;
+    document.getElementById("purchasingPrice").innerText = product.PurchasingPrice[index];
+    document.getElementById("sellingPrice").innerText = product.SellingPrice[index];
+  });
+</script>
